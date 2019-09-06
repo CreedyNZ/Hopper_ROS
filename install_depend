@@ -1,2 +1,3 @@
 sudo apt update
-sudo apt install -y ros-kinetic-urdf ros-kinetic-move-base ros-kinetic-rplidar-ros ros-kinetic-freenect-launch ros-kinetic-joy ros-kinetic-gmapping
+sudo apt install -y ros-melodic-urdf ros-melodic-move-base ros-melodic-rplidar-ros ros-melodic-freenect-launch ros-melodic-joy ros-melodic-gmapping ros-melodic-octomap ros-melodic-octomap-mapping ros-melodic-octomap-msgs ros-melodic-octomap-ros ros-melodic-octomap-rviz-plugins ros-melodic-octomap-server
+

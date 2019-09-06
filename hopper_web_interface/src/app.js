@@ -12,15 +12,15 @@ app.use(express.static(__dirname + '/public'));
 app.use('/vue', express.static(__dirname + '/node_modules/vue/dist'));
 app.use('/nipplejs', express.static(__dirname + '/node_modules/nipplejs/dist'));
 
-require('socketio-auth')(io, {
-    authenticate: function (socket, data, callback) {
-        //get credentials sent by the client
-        var username = data.username;
-        var password = data.password;
-        console.log(`User auth request ${username} passed: ${password}`);
-        callback(null, robot.validateUser(username, password));
-    }
-});
+// require('socketio-auth')(io, {
+//     authenticate: function (socket, data, callback) {
+//         //get credentials sent by the client
+//         var username = data.username;
+//         var password = data.password;
+//         console.log(`User auth request ${username} passed: ${password}`);
+//         callback(null, robot.validateUser(username, password));
+//     }
+// });
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/index.html");
