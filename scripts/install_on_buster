@@ -1,6 +1,6 @@
 
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
 
 sudo apt update
 sudo apt upgrade
@@ -13,8 +13,8 @@ rosdep update
 mkdir -p ~/ros_catkin_ws
 cd ~/ros_catkin_ws
 
-rosinstall_generator ros_comm --rosdistro kinetic --deps --wet-only --tar > kinetic-ros_comm-wet.rosinstall
-wstool init src kinetic-ros_comm-wet.rosinstall
+rosinstall_generator ros_comm --rosdistro melodic --deps --wet-only --tar > melodic-ros_comm-wet.rosinstall
+wstool init src melodic-ros_comm-wet.rosinstall
 
 # if fail
 
@@ -30,10 +30,10 @@ wstool init src kinetic-ros_comm-wet.rosinstall
 # end fail
 
 cd ~/ros_catkin_ws
-rosdep install -y --from-paths src --ignore-src --rosdistro kinetic -r --os=debian:buster
+rosdep install -y --from-paths src --ignore-src --rosdistro melodic -r --os=ubuntu:bionic
 
 
-sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/kinetic
+sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
 
 # if missing boost
 
@@ -53,23 +53,23 @@ sudo ./b2 install
 # end missing boost
 
 
-echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
 
 # to install more packages
 
 cd ~/ros_catkin_ws
-rosinstall_generator 'package name' --rosdistro kinetic --deps --wet-only --tar > kinetic-custom_ros.rosinstall
+rosinstall_generator 'package name' --rosdistro melodic --deps --wet-only --tar > melodic-custom_ros.rosinstall
 
-wstool merge -t src kinetic-custom_ros.rosinstall
+wstool merge -t src melodic-custom_ros.rosinstall
 wstool update -t src
 
-rosdep install --from-paths src --ignore-src --rosdistro kinetic -y -r --os=debian:buster
+rosdep install --from-paths src --ignore-src --rosdistro melodic -y -r --os=debian:buster
 
-sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/kinetic
+sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
 
 #end install more packages
 
 
-rosinstall_generator tf2 tf move_base xacro --rosdistro kinetic --deps --wet-only --tar > kinetic-custom_ros.rosinstall
+rosinstall_generator tf2 tf move_base xacro --rosdistro melodic --deps --wet-only --tar > melodic-custom_ros.rosinstall
