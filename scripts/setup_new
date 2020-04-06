@@ -1,31 +1,30 @@
-sudo adduser dweis
-sudo usermod -aG sudo dweis
+sudo adduser ros
+sudo usermod -aG sudo ros
 
 sudo apt update
 sudo apt install mosh tree iperf nmap tmux
 
 
-sudo deluser --remove-home pi
 
 cat <<EOT >> ~/.bashrc
 alias use_hacklab_ip='source ~/bin/hacklab_ip'
 alias use_mobile_ip='source ~/bin/hacklab_ip'
 alias use_home_ip='source ~/bin/home_ip'
-alias use_hopper='cd ~/hopper_ws; source ros'
-alias hopper_src='use_hopper; cd ~/hopper_ws/src/Hopper_ROS'
+alias use_hexy='cd ~/hexy_ws; source ros'
+alias hexy_src='use_hexy; cd ~/hexy_ws/src/Hopper_ROS'
 EOT
 source ~/.bashrc
 
 
 git config --global push.default simple
 git config --global credential.helper store
-git config --global user.name "David Weis"
-git config --global user.email "davidmicahelweis@gmail.com"
+git config --global user.name "Andrew Creahan"
+git config --global user.email "CreedyNZ@users.noreply.github.com"
 
 
-mkdir -p ~/ros/hopper/src
-cd ~/ros/hopper/src
-git clone https://github.com/dmweis/Hopper_ROS.git
+mkdir -p ~/ros/hexy/src
+cd ~/ros/hexy/src
+git clone https://github.com/CreedyNZ/Hopper_ROS.git
 cd ..
 rosdep update
 rosdep install --from-paths src --ignore-src -r -y
